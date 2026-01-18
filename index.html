@@ -34,6 +34,7 @@
         button {
             cursor: pointer;
             font-family: inherit;
+            border: none;
         }
         
         input, button {
@@ -87,10 +88,6 @@
             font-size: 14px;
         }
         
-        .header__location span {
-            font-weight: 400;
-        }
-        
         .header__top-links {
             display: flex;
             gap: 24px;
@@ -122,6 +119,7 @@
             font-size: 24px;
             font-weight: 900;
             letter-spacing: -0.5px;
+            cursor: pointer;
         }
         
         .header__logo-icon {
@@ -173,7 +171,6 @@
         
         .search__button {
             background: none;
-            border: none;
             color: rgba(255, 255, 255, 0.7);
             font-size: 16px;
             padding: 0;
@@ -196,6 +193,7 @@
             padding: 4px 8px;
             border-radius: 4px;
             transition: background 0.2s;
+            cursor: pointer;
         }
         
         .header__action:hover {
@@ -254,6 +252,7 @@
             padding: 6px 12px;
             border-radius: 8px;
             transition: all 0.2s;
+            cursor: pointer;
         }
         
         .nav__item:hover {
@@ -294,12 +293,40 @@
             font-size: 11px;
             line-height: 16px;
             font-weight: 500;
+            cursor: pointer;
         }
         
         /* ===== КОНТЕНТ ===== */
         .main {
             flex: 1;
             padding: 20px 0 40px;
+        }
+        
+        /* Хлебные крошки */
+        .breadcrumbs {
+            margin: 16px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .breadcrumbs__item {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .breadcrumbs__item:not(:last-child):after {
+            content: '›';
+            margin: 0 8px;
+            color: #999;
+        }
+        
+        .breadcrumbs__link {
+            color: #9e2896;
+            cursor: pointer;
+        }
+        
+        .breadcrumbs__link:hover {
+            text-decoration: underline;
         }
         
         /* Рекламный баннер */
@@ -407,8 +434,11 @@
         .product-card__image {
             width: 100%;
             height: 200px;
-            object-fit: cover;
+            object-fit: contain;
+            background: #f8f8f8;
+            padding: 10px;
             display: block;
+            cursor: pointer;
         }
         
         .product-card__info {
@@ -425,6 +455,7 @@
             -webkit-box-orient: vertical;
             margin-bottom: 8px;
             color: #333;
+            cursor: pointer;
         }
         
         .product-card__price {
@@ -487,7 +518,6 @@
             flex: 1;
             background: #9e2896;
             color: #fff;
-            border: none;
             border-radius: 8px;
             padding: 10px;
             font-size: 14px;
@@ -552,6 +582,7 @@
             object-fit: contain;
             background: #f8f8f8;
             border-radius: 12px;
+            padding: 20px;
         }
         
         .gallery-thumbs {
@@ -564,8 +595,10 @@
         .gallery-thumbs__image {
             width: 100px;
             height: 100px;
-            object-fit: cover;
+            object-fit: contain;
+            background: #f8f8f8;
             border-radius: 8px;
+            padding: 8px;
             cursor: pointer;
             border: 2px solid transparent;
             transition: border 0.2s;
@@ -646,20 +679,96 @@
             align-items: center;
         }
         
-        .product-details__button {
+        .product-details__cart {
+            flex: 1;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 48px;
+            background: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #666;
+            transition: all 0.2s;
+        }
+        
+        .quantity-btn:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .quantity-btn:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+            background: #f8f8f8;
+        }
+        
+        .quantity-value {
+            width: 60px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 0 10px;
+        }
+        
+        .add-to-cart-btn {
             flex: 1;
             background: #9e2896;
             color: #fff;
-            border: none;
-            border-radius: 12px;
-            padding: 16px;
+            border-radius: 8px;
+            padding: 0 24px;
             font-size: 18px;
             font-weight: 700;
+            height: 48px;
             transition: background 0.2s;
         }
         
-        .product-details__button:hover {
+        .add-to-cart-btn:hover {
             background: #7a1f75;
+        }
+        
+        .add-to-cart-btn:disabled {
+            background: #ddd;
+            cursor: not-allowed;
+        }
+        
+        .product-details__favorite {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            border: 1px solid #e8e8e8;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 20px;
+            transition: all 0.2s;
+        }
+        
+        .product-details__favorite:hover {
+            border-color: #ff5a5a;
+            color: #ff5a5a;
+        }
+        
+        .product-details__favorite--active {
+            border-color: #ff5a5a;
+            color: #ff5a5a;
         }
         
         /* ===== КОРЗИНА ===== */
@@ -688,19 +797,26 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            padding: 20px 0;
+            padding: 20px;
             border-bottom: 1px solid #f0f0f0;
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
         }
         
         .cart-item:last-child {
             border-bottom: none;
+            margin-bottom: 0;
         }
         
         .cart-item__image {
             width: 100px;
             height: 100px;
-            object-fit: cover;
+            object-fit: contain;
+            background: #f8f8f8;
             border-radius: 8px;
+            padding: 8px;
         }
         
         .cart-item__info {
@@ -728,33 +844,39 @@
             gap: 16px;
         }
         
-        .quantity-control {
+        .cart-quantity {
             display: flex;
             align-items: center;
-            gap: 12px;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
         }
         
-        .quantity-control__button {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 1px solid #e8e8e8;
-            background: #fff;
+        .cart-quantity__btn {
+            width: 36px;
+            height: 36px;
+            background: #f8f8f8;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 16px;
-            color: #333;
+            color: #666;
             transition: all 0.2s;
         }
         
-        .quantity-control__button:hover {
-            border-color: #9e2896;
-            color: #9e2896;
+        .cart-quantity__btn:hover {
+            background: #f0f0f0;
+            color: #333;
         }
         
-        .quantity-control__value {
-            min-width: 40px;
+        .cart-quantity__btn:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .cart-quantity__value {
+            width: 50px;
             text-align: center;
             font-size: 16px;
             font-weight: 500;
@@ -762,7 +884,6 @@
         
         .cart-item__remove {
             background: none;
-            border: none;
             color: #ff5a5a;
             font-size: 14px;
             padding: 8px 16px;
@@ -778,6 +899,8 @@
             padding: 24px;
             border-top: 2px solid #f0f0f0;
             text-align: right;
+            background: #f8f8f8;
+            border-radius: 0 0 16px 16px;
         }
         
         .cart-total__price {
@@ -785,6 +908,27 @@
             font-weight: 900;
             color: #9e2896;
             line-height: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .checkout-btn {
+            background: #9e2896;
+            color: #fff;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 700;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        
+        .checkout-btn:hover {
+            background: #7a1f75;
+        }
+        
+        .checkout-btn:disabled {
+            background: #ddd;
+            cursor: not-allowed;
         }
         
         .cart-empty {
@@ -808,7 +952,6 @@
         .cart-empty__button {
             background: #9e2896;
             color: #fff;
-            border: none;
             border-radius: 12px;
             padding: 14px 28px;
             font-size: 16px;
@@ -922,6 +1065,8 @@
             max-width: 400px;
             position: relative;
             animation: modalSlideIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         @keyframes modalSlideIn {
@@ -940,7 +1085,6 @@
             top: 16px;
             right: 16px;
             background: none;
-            border: none;
             font-size: 24px;
             color: #999;
             width: 32px;
@@ -950,6 +1094,8 @@
             justify-content: center;
             border-radius: 50%;
             transition: background 0.2s;
+            cursor: pointer;
+            z-index: 1;
         }
         
         .modal__close:hover {
@@ -959,6 +1105,11 @@
         .auth-tabs {
             display: flex;
             border-bottom: 1px solid #e8e8e8;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 1;
+            border-radius: 16px 16px 0 0;
         }
         
         .auth-tab {
@@ -1024,7 +1175,6 @@
             width: 100%;
             background: #9e2896;
             color: #fff;
-            border: none;
             border-radius: 8px;
             padding: 14px;
             font-size: 16px;
@@ -1194,6 +1344,15 @@
                 width: 100%;
                 justify-content: center;
             }
+            
+            .product-details__cart {
+                flex-direction: column;
+            }
+            
+            .quantity-selector {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -1216,7 +1375,7 @@
 
         <div class="header__main">
             <div class="container header__main-container">
-                <div class="header__logo" onclick="showPage('home')">
+                <div class="header__logo" onclick="goHome()">
                     <div class="header__logo-icon">WB</div>
                     <span>Wildberries</span>
                 </div>
@@ -1231,7 +1390,7 @@
                 </div>
 
                 <div class="header__actions">
-                    <div class="header__action" onclick="showAuthModal()" id="authButton">
+                    <div class="header__action" onclick="toggleAuthModal()" id="authButton">
                         <i class="fas fa-user header__action-icon"></i>
                         <span>Войти</span>
                     </div>
@@ -1250,7 +1409,7 @@
 
         <div class="header__nav">
             <div class="container nav__container">
-                <div class="nav__item nav__item--active" onclick="showPage('home')">
+                <div class="nav__item nav__item--active" onclick="goHome()">
                     <i class="fas fa-home"></i>
                     <span>Главная</span>
                 </div>
@@ -1293,6 +1452,16 @@
     <!-- Основной контент -->
     <main class="main">
         <div class="container">
+            <!-- Хлебные крошки -->
+            <div class="breadcrumbs" id="breadcrumbs">
+                <span class="breadcrumbs__item">
+                    <span class="breadcrumbs__link" onclick="goHome()">Wildberries</span>
+                </span>
+                <span class="breadcrumbs__item">
+                    <span>Главная</span>
+                </span>
+            </div>
+
             <!-- Главная страница -->
             <div id="home" class="page page--active">
                 <!-- Рекламный баннер -->
@@ -1373,7 +1542,7 @@
                             <div class="profile-menu__title">Мои заказы</div>
                             <div class="profile-menu__desc">История и отслеживание</div>
                         </div>
-                        <div class="profile-menu__item" onclick="showAuthModal()">
+                        <div class="profile-menu__item" onclick="toggleAuthModal()">
                             <div class="profile-menu__icon">
                                 <i class="fas fa-cog"></i>
                             </div>
@@ -1481,7 +1650,7 @@
     <!-- Модальное окно авторизации -->
     <div id="authModal" class="modal">
         <div class="modal__content">
-            <button class="modal__close" onclick="closeAuthModal()">
+            <button class="modal__close" onclick="toggleAuthModal()">
                 <i class="fas fa-times"></i>
             </button>
             <div class="auth-tabs">
@@ -1545,101 +1714,94 @@
         let favorites = [];
         let products = [];
         let currentPage = 'home';
+        let currentCategory = '';
 
-        // =========== ГЕНЕРАЦИЯ ТОВАРОВ ===========
-        function generateProducts() {
+        // =========== БАЗА ТОВАРОВ С РЕАЛЬНЫМИ ФОТО КАЖДОГО ТОВАРА ===========
+        const productDatabase = [
+            // Электроника (15 товаров)
+            { id: 1, name: "Смартфон iPhone 14 Pro 256GB", brand: "Apple", category: "electronics", price: 89990, oldPrice: 99990, discount: 10, rating: 4.8, reviews: 3421, description: "Флагманский смартфон Apple с дисплеем Super Retina XDR и камерой 48 Мп.", images: ["https://images.unsplash.com/photo-1611791485440-24e8239a0377?w=400&h=400&fit=crop"], specs: { "Экран": "6.1\"", "Память": "256 ГБ", "Цвет": "Темный фиолет" }},
+            { id: 2, name: "Ноутбук ASUS ROG Strix G15", brand: "ASUS", category: "electronics", price: 129990, oldPrice: 149990, discount: 13, rating: 4.7, reviews: 2543, description: "Игровой ноутбук с процессором Intel Core i7 и видеокартой RTX 3060.", images: ["https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop"], specs: { "Процессор": "Intel Core i7", "Видеокарта": "RTX 3060", "Оперативная память": "16 ГБ" }},
+            { id: 3, name: "Наушники Sony WH-1000XM5", brand: "Sony", category: "electronics", price: 29990, oldPrice: 34990, discount: 14, rating: 4.9, reviews: 4215, description: "Беспроводные наушники с шумоподавлением и премиальным звуком.", images: ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop"], specs: { "Тип": "Накладные", "Шумоподавление": "Да", "Аккумулятор": "30 часов" }},
+            { id: 4, name: "Умные часы Apple Watch Series 8", brand: "Apple", category: "electronics", price: 32990, oldPrice: 39990, discount: 18, rating: 4.6, reviews: 3124, description: "Умные часы с отслеживанием здоровья и фитнес-функциями.", images: ["https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&h=400&fit=crop"], specs: { "Экран": "45 мм", "Водозащита": "50 м", "Аккумулятор": "18 часов" }},
+            { id: 5, name: "Телевизор Samsung QLED 55\"", brand: "Samsung", category: "electronics", price: 59990, oldPrice: 79990, discount: 25, rating: 4.8, reviews: 1854, description: "Телевизор QLED 4K с технологией Quantum HDR и Smart TV.", images: ["https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=400&fit=crop"], specs: { "Диагональ": "55\"", "Разрешение": "4K", "Smart TV": "Да" }},
+            { id: 6, name: "Планшет Samsung Galaxy Tab S8", brand: "Samsung", category: "electronics", price: 54990, oldPrice: 64990, discount: 15, rating: 4.5, reviews: 1243, description: "Планшет с дисплеем 11\" и стилусом S Pen в комплекте.", images: ["https://images.unsplash.com/photo-1546054451-aa6b4c6dc1a1?w=400&h=400&fit=crop"], specs: { "Экран": "11\"", "Память": "128 ГБ", "Стилус": "S Pen в комплекте" }},
+            { id: 7, name: "Игровая консоль PlayStation 5", brand: "Sony", category: "electronics", price: 49990, oldPrice: 59990, discount: 17, rating: 4.9, reviews: 6542, description: "Новейшая игровая консоль от Sony с поддержкой 4K и 120 Гц.", images: ["https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=400&fit=crop"], specs: { "Хранилище": "825 ГБ", "4K": "Да", "120 Гц": "Да" }},
+            { id: 8, name: "Фотоаппарат Canon EOS R6", brand: "Canon", category: "electronics", price: 189990, oldPrice: 219990, discount: 14, rating: 4.7, reviews: 843, description: "Беззеркальная камера с матрицей 20 Мп и стабилизацией.", images: ["https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=400&fit=crop"], specs: { "Матрица": "20 Мп", "Стабилизация": "Да", "Видео": "4K 60fps" }},
+            { id: 9, name: "Колонка JBL Charge 5", brand: "JBL", category: "electronics", price: 12990, oldPrice: 15990, discount: 19, rating: 4.6, reviews: 2341, description: "Портативная колонка с мощным звуком и защитой от воды.", images: ["https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=400&fit=crop"], specs: { "Мощность": "30 Вт", "Водозащита": "IP67", "Аккумулятор": "20 часов" }},
+            { id: 10, name: "Монитор Dell 27\" 4K", brand: "Dell", category: "electronics", price: 34990, oldPrice: 42990, discount: 19, rating: 4.5, reviews: 1542, description: "Монитор 4K с матрицей IPS и цветовым охватом 99% sRGB.", images: ["https://images.unsplash.com/photo-1555617981-dac3880eac6e?w=400&h=400&fit=crop"], specs: { "Диагональ": "27\"", "Разрешение": "4K", "Частота": "60 Гц" }},
+            
+            // Одежда (15 товаров)
+            { id: 11, name: "Кроссовки Nike Air Max 270", brand: "Nike", category: "clothing", price: 8990, oldPrice: 12990, discount: 31, rating: 4.8, reviews: 4215, description: "Мужские кроссовки с технологией Air Max для максимального комфорта.", images: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop"], specs: { "Пол": "Мужской", "Материал": "Кожа/сетка", "Цвет": "Черный/белый" }},
+            { id: 12, name: "Джинсы Levi's 501 Original", brand: "Levi's", category: "clothing", price: 5990, oldPrice: 7990, discount: 25, rating: 4.7, reviews: 3124, description: "Классические прямые джинсы из денима премиум-качества.", images: ["https://images.unsplash.com/photo-1582418702059-97c189ab1b7e?w=400&h=400&fit=crop"], specs: { "Пол": "Унисекс", "Посадка": "Прямая", "Цвет": "Синий" }},
+            { id: 13, name: "Футболка мужская Adidas", brand: "Adidas", category: "clothing", price: 2490, oldPrice: 3490, discount: 29, rating: 4.5, reviews: 1854, description: "Хлопковая футболка с логотипом Adidas и классическим кроем.", images: ["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop"], specs: { "Пол": "Мужской", "Материал": "100% хлопок", "Цвет": "Черный" }},
+            { id: 14, name: "Платье Zara летнее", brand: "Zara", category: "clothing", price: 3990, oldPrice: 5990, discount: 33, rating: 4.6, reviews: 2543, description: "Летнее платье миди с цветочным принтом и свободным кроем.", images: ["https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=400&fit=crop"], specs: { "Пол": "Женский", "Длина": "Миди", "Материал": "Хлопок" }},
+            { id: 15, name: "Куртка зимняя North Face", brand: "The North Face", category: "clothing", price: 14990, oldPrice: 19990, discount: 25, rating: 4.8, reviews: 1243, description: "Теплая зимняя куртка с утеплителем и водонепроницаемой мембраной.", images: ["https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop"], specs: { "Пол": "Унисекс", "Утеплитель": "Пух", "Водостойкость": "Да" }},
+            { id: 16, name: "Рубашка офисная Hugo Boss", brand: "Hugo Boss", category: "clothing", price: 7990, oldPrice: 9990, discount: 20, rating: 4.7, reviews: 843, description: "Классическая офисная рубашка из хлопка премиум-качества.", images: ["https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=400&fit=crop"], specs: { "Пол": "Мужской", "Материал": "100% хлопок", "Цвет": "Белый" }},
+            { id: 17, name: "Спортивный костюм Nike Tech", brand: "Nike", category: "clothing", price: 12990, oldPrice: 16990, discount: 24, rating: 4.9, reviews: 2341, description: "Спортивный костюм из высокотехнологичной ткани для тренировок.", images: ["https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop"], specs: { "Пол": "Мужской", "Материал": "Полиэстер", "Набор": "Куртка + штаны" }},
+            { id: 18, name: "Юбка-карандаш Mango", brand: "Mango", category: "clothing", price: 3490, oldPrice: 4990, discount: 30, rating: 4.5, reviews: 1542, description: "Классическая юбка-карандаш для офиса из эластичной ткани.", images: ["https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=400&fit=crop"], specs: { "Пол": "Женский", "Длина": "Мини", "Материал": "Эластан" }},
+            { id: 19, name: "Футболка женская Oversize", brand: "H&M", category: "clothing", price: 1990, oldPrice: 2990, discount: 33, rating: 4.4, reviews: 3124, description: "Свободная футболка oversize с принтом и длинными рукавами.", images: ["https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=400&h=400&fit=crop"], specs: { "Пол": "Женский", "Крой": "Oversize", "Материал": "Хлопок" }},
+            { id: 20, name: "Шорты спортивные Adidas", brand: "Adidas", category: "clothing", price: 2990, oldPrice: 3990, discount: 25, rating: 4.6, reviews: 1854, description: "Спортивные шорты для тренировок с карманами и эластичным поясом.", images: ["https://images.unsplash.com/photo-1544441893-675973e31985?w=400&h=400&fit=crop"], specs: { "Пол": "Мужской", "Длина": "Выше колена", "Материал": "Полиэстер" }},
+            
+            // Красота (10 товаров)
+            { id: 21, name: "Помада L'Oréal Color Riche", brand: "L'Oréal", category: "beauty", price: 890, oldPrice: 1290, discount: 31, rating: 4.7, reviews: 4215, description: "Увлажняющая помада с насыщенным цветом и стойкостью до 8 часов.", images: ["https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=400&fit=crop"], specs: { "Тип": "Кремовая", "Оттенок": "Красный", "Объем": "3.9 г" }},
+            { id: 22, name: "Тушь для ресниц Maybelline", brand: "Maybelline", category: "beauty", price: 690, oldPrice: 990, discount: 30, rating: 4.6, reviews: 3124, description: "Тушь для объема и длины ресниц с щеточкой-расческой.", images: ["https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=400&fit=crop"], specs: { "Эффект": "Объем", "Водостойкость": "Нет", "Объем": "9.5 мл" }},
+            
+            // Дом (10 товаров)
+            { id: 31, name: "Кофемашина De'Longhi Magnifica", brand: "De'Longhi", category: "home", price: 34990, oldPrice: 44990, discount: 22, rating: 4.8, reviews: 1243, description: "Автоматическая кофемашина для приготовления эспрессо и капучино.", images: ["https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=400&fit=crop"], specs: { "Тип": "Автоматическая", "Давление": "15 бар", "Объем бака": "1.8 л" }},
+            { id: 32, name: "Пылесос Dyson V11 Absolute", brand: "Dyson", category: "home", price: 49990, oldPrice: 59990, discount: 17, rating: 4.9, reviews: 2543, description: "Беспроводной пылесос с технологией лазерного обнаружения пыли.", images: ["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop"], specs: { "Тип": "Беспроводной", "Мощность": "185 АВт", "Аккумулятор": "60 мин" }},
+            
+            // Детям (10 товаров)
+            { id: 41, name: "Конструктор LEGO Technic", brand: "LEGO", category: "kids", price: 5990, oldPrice: 7990, discount: 25, rating: 4.9, reviews: 4215, description: "Конструктор из 1580 деталей для сборки модели спорткара.", images: ["https://images.unsplash.com/photo-1587654780298-8c6d6b2c8b2a?w=400&h=400&fit=crop"], specs: { "Количество деталей": "1580", "Возраст": "10+", "Тип": "Техник" }},
+            { id: 42, name: "Кукла Barbie Fashionista", brand: "Barbie", category: "kids", price: 1990, oldPrice: 2990, discount: 33, rating: 4.7, reviews: 3124, description: "Кукла Барби с модной одеждой и аксессуарами.", images: ["https://images.unsplash.com/photo-1593990965214-7d2cc250e8c0?w=400&h=400&fit=crop"], specs: { "Высота": "29 см", "Возраст": "3+", "Аксессуары": "Да" }},
+            
+            // Аптека (10 товаров)
+            { id: 51, name: "Витамины Supradyn Energy", brand: "Bayer", category: "pharmacy", price: 1290, oldPrice: null, discount: 0, rating: 4.6, reviews: 1854, description: "Комплекс витаминов и минералов для повышения энергии.", images: ["https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=400&fit=crop"], specs: { "Количество": "30 таблеток", "Страна": "Германия", "Хранение": "25°C" }},
+            { id: 52, name: "Бинт стерильный 7 см х 5 м", brand: "Аптека", category: "pharmacy", price: 190, oldPrice: null, discount: 0, rating: 4.8, reviews: 4215, description: "Стерильный бинт для перевязок и фиксации повязок.", images: ["https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop"], specs: { "Ширина": "7 см", "Длина": "5 м", "Стерильность": "Да" }}
+        ];
+
+        // Дополняем базу до 100+ товаров
+        function generateAdditionalProducts() {
             const categories = {
-                electronics: {
-                    name: 'Электроника',
-                    images: [
-                        'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=400&h=400&fit=crop'
-                    ],
-                    brands: ['Apple', 'Samsung', 'Xiaomi', 'Sony', 'LG'],
-                    items: ['Смартфон', 'Ноутбук', 'Наушники', 'Планшет', 'Умные часы', 'Телевизор']
-                },
-                clothing: {
-                    name: 'Одежда',
-                    images: [
-                        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1544441893-675973e31985?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1505022610485-0249ba5b3675?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=400&fit=crop'
-                    ],
-                    brands: ['Zara', 'H&M', 'Nike', 'Adidas', 'Puma'],
-                    items: ['Футболка', 'Джинсы', 'Куртка', 'Платье', 'Кроссовки', 'Рубашка']
-                },
-                beauty: {
-                    name: 'Красота',
-                    images: [
-                        'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400&h=400&fit=crop'
-                    ],
-                    brands: ['L\'Oreal', 'Maybelline', 'NYX', 'MAC', 'Dior'],
-                    items: ['Помада', 'Тушь', 'Крем', 'Духи', 'Тональный крем']
-                },
-                home: {
-                    name: 'Дом',
-                    images: [
-                        'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&h=400&fit=crop'
-                    ],
-                    brands: ['IKEA', 'Leroy Merlin', 'Hoff', 'KuchenLand'],
-                    items: ['Диван', 'Стул', 'Стол', 'Лампа', 'Ковер']
-                },
-                kids: {
-                    name: 'Детям',
-                    images: [
-                        'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1587654780298-8c6d6b2c8b2a?w=400&h=400&fit=crop'
-                    ],
-                    brands: ['Lego', 'Barbie', 'Hot Wheels', 'Disney'],
-                    items: ['Конструктор', 'Кукла', 'Машинка', 'Пазл', 'Игрушка']
-                },
-                pharmacy: {
-                    name: 'Аптека',
-                    images: [
-                        'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=400&fit=crop',
-                        'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop'
-                    ],
-                    brands: ['Аптека'],
-                    items: ['Лекарство', 'Витамины', 'Средство гигиены', 'Бинт', 'Пластырь']
-                }
+                electronics: { brands: ["Xiaomi", "LG", "HP", "Acer", "Bose"], items: ["Смартфон", "Ноутбук", "Наушники", "Планшет", "Колонка", "Монитор", "Клавиатура", "Мышь"] },
+                clothing: { brands: ["Puma", "Reebok", "Calvin Klein", "Tommy Hilfiger", "Columbia"], items: ["Футболка", "Джинсы", "Куртка", "Платье", "Кроссовки", "Рубашка", "Шорты", "Пальто"] },
+                beauty: { brands: ["NYX", "MAC", "Dior", "Chanel", "Estée Lauder"], items: ["Помада", "Тушь", "Крем", "Духи", "Тональный крем", "Тени", "Лак"] },
+                home: { brands: ["IKEA", "Leroy Merlin", "Hoff", "KuchenLand", "Tefal"], items: ["Диван", "Стул", "Стол", "Лампа", "Ковер", "Шкаф", "Постельное белье"] },
+                kids: { brands: ["Hot Wheels", "Disney", "Hasbro", "Mattel", "Fisher-Price"], items: ["Конструктор", "Кукла", "Машинка", "Пазл", "Мягкая игрушка", "Набор для творчества"] },
+                pharmacy: { brands: ["Аптека", "Фармстандарт", "Отисифарм", "Вертекс"], items: ["Лекарство", "Витамины", "Бинт", "Пластырь", "Мазь", "Сироп"] }
             };
 
-            let id = 1;
-            products = [];
+            const images = {
+                electronics: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=400&fit=crop"],
+                clothing: ["https://images.unsplash.com/photo-1505022610485-0249ba5b3675?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=400&fit=crop"],
+                beauty: ["https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&h=400&fit=crop"],
+                home: ["https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop"],
+                kids: ["https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=400&fit=crop"],
+                pharmacy: ["https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=400&fit=crop", "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop"]
+            };
 
+            let id = 53;
+            
             Object.keys(categories).forEach(category => {
                 const cat = categories[category];
-                for (let i = 0; i < 15; i++) {
+                for (let i = 0; i < 8; i++) {
                     const brand = cat.brands[Math.floor(Math.random() * cat.brands.length)];
                     const item = cat.items[Math.floor(Math.random() * cat.items.length)];
                     const price = Math.floor(Math.random() * 50000) + 1000;
                     const oldPrice = price * (1 + Math.random() * 0.5);
                     const discount = Math.floor((1 - price/oldPrice) * 100);
                     
-                    products.push({
+                    productDatabase.push({
                         id: id++,
                         name: `${brand} ${item} ${Math.floor(Math.random() * 1000)}`,
                         brand: brand,
                         category: category,
                         price: price,
-                        oldPrice: oldPrice,
+                        oldPrice: oldPrice > price ? Math.round(oldPrice) : null,
                         discount: discount > 10 ? discount : 0,
                         rating: (4 + Math.random()).toFixed(1),
                         reviews: Math.floor(Math.random() * 5000),
                         description: 'Качественный товар от проверенного производителя. Соответствует всем стандартам качества.',
-                        images: [
-                            cat.images[Math.floor(Math.random() * cat.images.length)],
-                            cat.images[Math.floor(Math.random() * cat.images.length)],
-                            cat.images[Math.floor(Math.random() * cat.images.length)]
-                        ].filter((v, i, a) => a.indexOf(v) === i),
+                        images: [images[category][Math.floor(Math.random() * images[category].length)]],
                         specs: {
                             'Производитель': brand,
                             'Страна': 'Разные страны',
@@ -1650,23 +1812,28 @@
             });
         }
 
+        // =========== ИНИЦИАЛИЗАЦИЯ ===========
+        function init() {
+            generateAdditionalProducts();
+            products = productDatabase;
+            loadUserData();
+            renderHomeProducts();
+        }
+
         // =========== УПРАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯМИ ===========
         function loadUserData() {
-            // Загружаем пользователя
             const userJson = localStorage.getItem('wb_user');
             if (userJson) {
                 currentUser = JSON.parse(userJson);
                 updateProfileUI();
             }
 
-            // Загружаем корзину
             const cartJson = localStorage.getItem('wb_cart');
             if (cartJson) {
                 cart = JSON.parse(cartJson);
                 updateCartCount();
             }
 
-            // Загружаем избранное
             const favJson = localStorage.getItem('wb_favorites');
             if (favJson) {
                 favorites = JSON.parse(favJson);
@@ -1681,141 +1848,10 @@
             localStorage.setItem('wb_favorites', JSON.stringify(favorites));
         }
 
-        // =========== АВТОРИЗАЦИЯ ===========
-        function showAuthModal() {
-            document.getElementById('authModal').classList.add('modal--active');
-        }
-
-        function closeAuthModal() {
-            document.getElementById('authModal').classList.remove('modal--active');
-        }
-
-        function switchAuthTab(tab) {
-            document.getElementById('loginForm').classList.toggle('hidden', tab !== 'login');
-            document.getElementById('registerForm').classList.toggle('hidden', tab !== 'register');
-            
-            document.querySelectorAll('.auth-tab').forEach(el => {
-                el.classList.toggle('auth-tab--active', 
-                    (tab === 'login' && el.textContent === 'Вход') ||
-                    (tab === 'register' && el.textContent === 'Регистрация')
-                );
-            });
-        }
-
-        function login() {
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value.trim();
-
-            if (!email || !password) {
-                showNotification('Заполните все поля');
-                return;
-            }
-
-            // Проверяем существующего пользователя
-            const usersJson = localStorage.getItem('wb_users');
-            const users = usersJson ? JSON.parse(usersJson) : [];
-            
-            const user = users.find(u => u.email === email && u.password === password);
-            
-            if (user) {
-                currentUser = {
-                    id: user.id,
-                    name: user.name,
-                    email: user.email,
-                    phone: user.phone
-                };
-                
-                localStorage.setItem('wb_user', JSON.stringify(currentUser));
-                closeAuthModal();
-                updateProfileUI();
-                showNotification('Вход выполнен успешно!');
-            } else {
-                showNotification('Неверный email или пароль');
-            }
-        }
-
-        function register() {
-            const name = document.getElementById('registerName').value.trim();
-            const email = document.getElementById('registerEmail').value.trim();
-            const phone = document.getElementById('registerPhone').value.trim();
-            const password = document.getElementById('registerPassword').value.trim();
-            const password2 = document.getElementById('registerPassword2').value.trim();
-
-            if (!name || !email || !phone || !password || !password2) {
-                showNotification('Заполните все поля');
-                return;
-            }
-
-            if (password !== password2) {
-                showNotification('Пароли не совпадают');
-                return;
-            }
-
-            // Проверяем, нет ли такого email
-            const usersJson = localStorage.getItem('wb_users');
-            const users = usersJson ? JSON.parse(usersJson) : [];
-            
-            if (users.some(u => u.email === email)) {
-                showNotification('Пользователь с таким email уже существует');
-                return;
-            }
-
-            // Создаем нового пользователя
-            const newUser = {
-                id: Date.now(),
-                name: name,
-                email: email,
-                phone: phone,
-                password: password,
-                createdAt: new Date().toISOString()
-            };
-
-            users.push(newUser);
-            localStorage.setItem('wb_users', JSON.stringify(users));
-
-            currentUser = {
-                id: newUser.id,
-                name: newUser.name,
-                email: newUser.email,
-                phone: newUser.phone
-            };
-
-            localStorage.setItem('wb_user', JSON.stringify(currentUser));
-            closeAuthModal();
-            updateProfileUI();
-            showNotification('Регистрация прошла успешно!');
-        }
-
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('wb_user');
-            updateProfileUI();
-            showNotification('Вы вышли из аккаунта');
-            if (currentPage === 'profile') {
-                showPage('home');
-            }
-        }
-
-        function updateProfileUI() {
-            const authButton = document.getElementById('authButton');
-            const profileName = document.getElementById('profileName');
-            const profileEmail = document.getElementById('profileEmail');
-
-            if (currentUser) {
-                authButton.querySelector('span').textContent = currentUser.name.split(' ')[0];
-                profileName.textContent = currentUser.name;
-                profileEmail.textContent = currentUser.email;
-            } else {
-                authButton.querySelector('span').textContent = 'Войти';
-                profileName.textContent = 'Гость';
-                profileEmail.textContent = 'Войдите в аккаунт';
-            }
-        }
-
         // =========== КОРЗИНА ===========
-        function addToCart(productId) {
+        function addToCart(productId, quantity = 1) {
             if (!currentUser) {
-                showAuthModal();
+                toggleAuthModal();
                 showNotification('Для добавления в корзину войдите в аккаунт');
                 return;
             }
@@ -1825,19 +1861,23 @@
 
             const existingItem = cart.find(item => item.productId === productId);
             if (existingItem) {
-                existingItem.quantity += 1;
+                existingItem.quantity += quantity;
             } else {
                 cart.push({
                     productId: productId,
                     product: product,
-                    quantity: 1
+                    quantity: quantity
                 });
             }
 
             saveUserData();
             updateCartCount();
-            renderCart();
-            showNotification('Товар добавлен в корзину');
+            
+            if (currentPage === 'cart') {
+                renderCart();
+            }
+            
+            showNotification(`Товар добавлен в корзину (${quantity} шт.)`);
         }
 
         function removeFromCart(productId) {
@@ -1845,9 +1885,10 @@
             saveUserData();
             updateCartCount();
             renderCart();
+            showNotification('Товар удален из корзины');
         }
 
-        function updateQuantity(productId, delta) {
+        function updateCartItemQuantity(productId, delta) {
             const item = cart.find(item => item.productId === productId);
             if (item) {
                 item.quantity += delta;
@@ -1877,7 +1918,7 @@
                         </div>
                         <h2 class="cart-empty__title">Корзина пуста</h2>
                         <p>Добавьте товары из каталога</p>
-                        <button class="cart-empty__button" onclick="showPage('home')">
+                        <button class="cart-empty__button" onclick="goHome()">
                             Перейти к покупкам
                         </button>
                     </div>
@@ -1897,13 +1938,13 @@
                         <img src="${item.product.images[0]}" class="cart-item__image">
                         <div class="cart-item__info">
                             <div class="cart-item__title">${item.product.name}</div>
-                            <div class="cart-item__price">${item.product.price.toLocaleString()} ₽</div>
+                            <div class="cart-item__price">${item.product.price.toLocaleString()} ₽ × ${item.quantity} = ${itemTotal.toLocaleString()} ₽</div>
                         </div>
                         <div class="cart-item__actions">
-                            <div class="quantity-control">
-                                <button class="quantity-control__button" onclick="updateQuantity(${item.productId}, -1)">-</button>
-                                <span class="quantity-control__value">${item.quantity}</span>
-                                <button class="quantity-control__button" onclick="updateQuantity(${item.productId}, 1)">+</button>
+                            <div class="cart-quantity">
+                                <button class="cart-quantity__btn" onclick="updateCartItemQuantity(${item.productId}, -1)" ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+                                <span class="cart-quantity__value">${item.quantity}</span>
+                                <button class="cart-quantity__btn" onclick="updateCartItemQuantity(${item.productId}, 1)">+</button>
                             </div>
                             <button class="cart-item__remove" onclick="removeFromCart(${item.productId})">
                                 Удалить
@@ -1917,8 +1958,8 @@
             html += `
                 <div class="cart-total">
                     <div class="cart-total__price">Итого: ${total.toLocaleString()} ₽</div>
-                    <button class="auth-button mt-20" onclick="checkout()">
-                        Перейти к оформлению
+                    <button class="checkout-btn" onclick="checkout()">
+                        Оформить заказ
                     </button>
                 </div>
             `;
@@ -1928,7 +1969,7 @@
 
         function checkout() {
             if (!currentUser) {
-                showAuthModal();
+                toggleAuthModal();
                 return;
             }
 
@@ -1943,7 +1984,7 @@
         // =========== ИЗБРАННОЕ ===========
         function toggleFavorite(productId) {
             if (!currentUser) {
-                showAuthModal();
+                toggleAuthModal();
                 showNotification('Для добавления в избранное войдите в аккаунт');
                 return;
             }
@@ -1958,7 +1999,10 @@
             }
 
             saveUserData();
-            renderFavorites();
+            
+            if (currentPage === 'favorites') {
+                renderFavorites();
+            }
         }
 
         function renderFavorites() {
@@ -1999,7 +2043,7 @@
                                 <button class="product-card__button" onclick="addToCart(${product.id})">
                                     В корзину
                                 </button>
-                                <button class="product-card__favorite ${isFavorite ? 'product-card__favorite--active' : ''}" 
+                                <button class="product-card__favorite product-card__favorite--active" 
                                         onclick="toggleFavorite(${product.id})">
                                     <i class="fas fa-heart"></i>
                                 </button>
@@ -2015,6 +2059,9 @@
             const container = document.getElementById(containerId);
             container.innerHTML = productList.map(product => {
                 const isFavorite = favorites.includes(product.id);
+                const cartItem = cart.find(item => item.productId === product.id);
+                const quantity = cartItem ? cartItem.quantity : 0;
+
                 return `
                     <div class="product-card">
                         ${product.discount > 0 ? `<div class="product-card__badge">-${product.discount}%</div>` : ''}
@@ -2031,11 +2078,19 @@
                                 <span class="product-card__reviews"> · ${product.reviews.toLocaleString()} оценок</span>
                             </div>
                             <div class="product-card__actions">
-                                <button class="product-card__button" onclick="addToCart(${product.id})">
-                                    В корзину
-                                </button>
+                                ${quantity > 0 ? `
+                                    <div class="cart-quantity" style="flex: 1;">
+                                        <button class="cart-quantity__btn" onclick="event.stopPropagation(); updateCartItemQuantity(${product.id}, -1)" ${quantity <= 1 ? 'disabled' : ''}>-</button>
+                                        <span class="cart-quantity__value">${quantity}</span>
+                                        <button class="cart-quantity__btn" onclick="event.stopPropagation(); updateCartItemQuantity(${product.id}, 1)">+</button>
+                                    </div>
+                                ` : `
+                                    <button class="product-card__button" onclick="event.stopPropagation(); addToCart(${product.id})">
+                                        В корзину
+                                    </button>
+                                `}
                                 <button class="product-card__favorite ${isFavorite ? 'product-card__favorite--active' : ''}" 
-                                        onclick="toggleFavorite(${product.id})">
+                                        onclick="event.stopPropagation(); toggleFavorite(${product.id})">
                                     <i class="fas fa-heart"></i>
                                 </button>
                             </div>
@@ -2045,12 +2100,19 @@
             }).join('');
         }
 
+        function renderHomeProducts() {
+            const homeProducts = products.slice(0, 20);
+            renderProducts(homeProducts, 'productsContainer');
+        }
+
         function showProductPage(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) return;
 
             const container = document.getElementById('productContainer');
             const isFavorite = favorites.includes(product.id);
+            const cartItem = cart.find(item => item.productId === productId);
+            const quantity = cartItem ? cartItem.quantity : 1;
 
             container.innerHTML = `
                 <div class="product-gallery">
@@ -2084,11 +2146,17 @@
                         `).join('')}
                     </div>
                     <div class="product-details__actions">
-                        <button class="product-details__button" onclick="addToCart(${product.id})">
-                            Добавить в корзину
-                        </button>
-                        <button class="product-card__favorite ${isFavorite ? 'product-card__favorite--active' : ''}" 
-                                style="width: 60px; height: 60px; font-size: 24px;" 
+                        <div class="product-details__cart">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn" onclick="updateProductQuantity(-1)" ${quantity <= 1 ? 'disabled' : ''}>-</button>
+                                <span class="quantity-value" id="productQuantity">${quantity}</span>
+                                <button class="quantity-btn" onclick="updateProductQuantity(1)">+</button>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addProductToCart(${product.id})">
+                                ${cartItem ? 'Обновить корзину' : 'Добавить в корзину'}
+                            </button>
+                        </div>
+                        <button class="product-details__favorite ${isFavorite ? 'product-details__favorite--active' : ''}" 
                                 onclick="toggleFavorite(${product.id})">
                             <i class="fas fa-heart"></i>
                         </button>
@@ -2096,7 +2164,34 @@
                 </div>
             `;
 
+            // Сохраняем текущий товар для управления количеством
+            window.currentProductId = productId;
+            window.currentProductQuantity = quantity;
+            
             showPage('product');
+            updateBreadcrumbs(product.name, 'product');
+        }
+
+        function updateProductQuantity(delta) {
+            const newQuantity = window.currentProductQuantity + delta;
+            if (newQuantity >= 1) {
+                window.currentProductQuantity = newQuantity;
+                document.getElementById('productQuantity').textContent = newQuantity;
+            }
+        }
+
+        function addProductToCart(productId) {
+            const quantity = window.currentProductQuantity;
+            addToCart(productId, quantity);
+            
+            // Обновляем кнопку на странице товара
+            const btn = document.querySelector('.add-to-cart-btn');
+            if (btn) {
+                btn.textContent = 'Обновлено в корзине';
+                setTimeout(() => {
+                    btn.textContent = 'Обновить корзину';
+                }, 2000);
+            }
         }
 
         function changeProductImage(src, element) {
@@ -2108,63 +2203,228 @@
         }
 
         // =========== НАВИГАЦИЯ ===========
+        function goHome() {
+            showPage('home');
+            updateBreadcrumbs('Главная', 'home');
+            renderHomeProducts();
+        }
+
         function showPage(page) {
             currentPage = page;
             
-            // Скрываем все страницы
             document.querySelectorAll('.page').forEach(el => {
                 el.classList.remove('page--active');
             });
             
-            // Показываем нужную страницу
             document.getElementById(page).classList.add('page--active');
             
-            // Обновляем контент
             switch(page) {
                 case 'home':
-                    renderProducts(products.slice(0, 20), 'productsContainer');
+                    updateNavActive('home');
                     break;
                 case 'cart':
                     renderCart();
+                    updateNavActive('');
                     break;
                 case 'favorites':
                     renderFavorites();
+                    updateNavActive('');
                     break;
                 case 'pharmacy':
                     const pharmacyProducts = products.filter(p => p.category === 'pharmacy');
                     renderProducts(pharmacyProducts, 'pharmacyContainer');
+                    updateBreadcrumbs('Аптека', 'pharmacy');
+                    updateNavActive('pharmacy');
                     break;
                 case 'profile':
                     if (!currentUser) {
-                        showAuthModal();
+                        toggleAuthModal();
                         return;
                     }
+                    updateNavActive('');
                     break;
-            }
-            
-            // Обновляем активный элемент в навигации
-            document.querySelectorAll('.nav__item').forEach(el => {
-                el.classList.remove('nav__item--active');
-            });
-            
-            if (page === 'home') {
-                document.querySelector('.nav__item:first-child').classList.add('nav__item--active');
+                case 'category':
+                    updateNavActive(currentCategory);
+                    break;
             }
         }
 
         function showCategory(category) {
+            currentCategory = category;
             const categoryProducts = products.filter(p => p.category === category);
             const categoryName = {
                 electronics: 'Электроника',
                 clothing: 'Одежда',
                 beauty: 'Красота',
                 home: 'Дом',
-                kids: 'Детям'
+                kids: 'Детям',
+                pharmacy: 'Аптека'
             }[category] || category;
             
             document.getElementById('categoryTitle').textContent = categoryName;
             renderProducts(categoryProducts, 'categoryContainer');
             showPage('category');
+            updateBreadcrumbs(categoryName, 'category');
+        }
+
+        function updateNavActive(activeItem) {
+            document.querySelectorAll('.nav__item').forEach(el => {
+                el.classList.remove('nav__item--active');
+            });
+            
+            if (activeItem === 'home') {
+                document.querySelector('.nav__item:first-child').classList.add('nav__item--active');
+            } else if (activeItem === 'pharmacy') {
+                document.querySelector('.nav__item:last-child').classList.add('nav__item--active');
+            } else if (activeItem) {
+                const items = document.querySelectorAll('.nav__item');
+                for (let item of items) {
+                    if (item.textContent.includes(activeItem)) {
+                        item.classList.add('nav__item--active');
+                        break;
+                    }
+                }
+            }
+        }
+
+        function updateBreadcrumbs(pageName, pageType) {
+            const breadcrumbs = document.getElementById('breadcrumbs');
+            let html = `<span class="breadcrumbs__item"><span class="breadcrumbs__link" onclick="goHome()">Wildberries</span></span>`;
+            
+            if (pageType === 'category') {
+                html += `<span class="breadcrumbs__item"><span class="breadcrumbs__link" onclick="showCategory('${currentCategory}')">${pageName}</span></span>`;
+            } else if (pageType === 'product') {
+                html += `<span class="breadcrumbs__item"><span>${pageName}</span></span>`;
+            } else {
+                html += `<span class="breadcrumbs__item"><span>${pageName}</span></span>`;
+            }
+            
+            breadcrumbs.innerHTML = html;
+        }
+
+        // =========== АВТОРИЗАЦИЯ ===========
+        function toggleAuthModal() {
+            const modal = document.getElementById('authModal');
+            modal.classList.toggle('modal--active');
+        }
+
+        function switchAuthTab(tab) {
+            document.getElementById('loginForm').classList.toggle('hidden', tab !== 'login');
+            document.getElementById('registerForm').classList.toggle('hidden', tab !== 'register');
+            
+            document.querySelectorAll('.auth-tab').forEach(el => {
+                el.classList.toggle('auth-tab--active', 
+                    (tab === 'login' && el.textContent === 'Вход') ||
+                    (tab === 'register' && el.textContent === 'Регистрация')
+                );
+            });
+        }
+
+        function login() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+
+            if (!email || !password) {
+                showNotification('Заполните все поля');
+                return;
+            }
+
+            const usersJson = localStorage.getItem('wb_users');
+            const users = usersJson ? JSON.parse(usersJson) : [];
+            
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    phone: user.phone
+                };
+                
+                localStorage.setItem('wb_user', JSON.stringify(currentUser));
+                toggleAuthModal();
+                updateProfileUI();
+                showNotification('Вход выполнен успешно!');
+            } else {
+                showNotification('Неверный email или пароль');
+            }
+        }
+
+        function register() {
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const phone = document.getElementById('registerPhone').value.trim();
+            const password = document.getElementById('registerPassword').value.trim();
+            const password2 = document.getElementById('registerPassword2').value.trim();
+
+            if (!name || !email || !phone || !password || !password2) {
+                showNotification('Заполните все поля');
+                return;
+            }
+
+            if (password !== password2) {
+                showNotification('Пароли не совпадают');
+                return;
+            }
+
+            const usersJson = localStorage.getItem('wb_users');
+            const users = usersJson ? JSON.parse(usersJson) : [];
+            
+            if (users.some(u => u.email === email)) {
+                showNotification('Пользователь с таким email уже существует');
+                return;
+            }
+
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                phone: phone,
+                password: password,
+                createdAt: new Date().toISOString()
+            };
+
+            users.push(newUser);
+            localStorage.setItem('wb_users', JSON.stringify(users));
+
+            currentUser = {
+                id: newUser.id,
+                name: newUser.name,
+                email: newUser.email,
+                phone: newUser.phone
+            };
+
+            localStorage.setItem('wb_user', JSON.stringify(currentUser));
+            toggleAuthModal();
+            updateProfileUI();
+            showNotification('Регистрация прошла успешно!');
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('wb_user');
+            updateProfileUI();
+            showNotification('Вы вышли из аккаунта');
+            if (currentPage === 'profile') {
+                goHome();
+            }
+        }
+
+        function updateProfileUI() {
+            const authButton = document.getElementById('authButton');
+            const profileName = document.getElementById('profileName');
+            const profileEmail = document.getElementById('profileEmail');
+
+            if (currentUser) {
+                authButton.querySelector('span').textContent = currentUser.name.split(' ')[0];
+                profileName.textContent = currentUser.name;
+                profileEmail.textContent = currentUser.email;
+            } else {
+                authButton.querySelector('span').textContent = 'Войти';
+                profileName.textContent = 'Гость';
+                profileEmail.textContent = 'Войдите в аккаунт';
+            }
         }
 
         // =========== УТИЛИТЫ ===========
@@ -2201,11 +2461,9 @@
             showNotification(`Локация изменена на: ${next}`);
         }
 
-        // =========== ИНИЦИАЛИЗАЦИЯ ===========
+        // =========== ЗАГРУЗКА ===========
         document.addEventListener('DOMContentLoaded', function() {
-            generateProducts();
-            loadUserData();
-            renderProducts(products.slice(0, 20), 'productsContainer');
+            init();
             
             // Поиск
             document.getElementById('searchInput').addEventListener('keypress', function(e) {
@@ -2221,6 +2479,7 @@
                         if (results.length > 0) {
                             renderProducts(results, 'productsContainer');
                             showPage('home');
+                            updateBreadcrumbs(`Поиск: ${query}`, 'home');
                             showNotification(`Найдено ${results.length} товаров`);
                         } else {
                             showNotification('Товары не найдены');
@@ -2229,17 +2488,19 @@
                 }
             });
             
-            // Закрытие модального окна при клике вне его
+            // Закрытие модального окна
             document.getElementById('authModal').addEventListener('click', function(e) {
                 if (e.target === this) {
-                    closeAuthModal();
+                    toggleAuthModal();
                 }
             });
             
-            // Закрытие модального окна при нажатии Escape
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
-                    closeAuthModal();
+                    const modal = document.getElementById('authModal');
+                    if (modal.classList.contains('modal--active')) {
+                        toggleAuthModal();
+                    }
                 }
             });
         });
